@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header">
+					<h3>My Profile</h3>
+				</div>
+				<div class="card-body">
+					<form method="post">
+						{% csrf_token %}
+
+						<div class="row mb-3">
+							<div class="col-md-6">
+								<label for="first_name" class="form-label">First Name</label>
+								<input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}">
+							</div>
+							<div class="col-md-6">
+								<label for="last_name" class="form-label">Last Name</label>
+								<input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}">
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<label for="email" class="form-label">Email</label>
+							<input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+						</div>
+
+						<div class="mb-3">
+							<label for="phone" class="form-label">Phone Number</label>
+							<input type="tel" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
+						</div>
+
+						<div class="mb-3">
+							<label for="username" class="form-label">Username</label>
+							<input type="text" class="form-control" id="username" value="{{ user.username }}" disabled>
+							<div class="form-text">Username cannot be changed.</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Update Profile</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header">
+					<h3>My Bookings</h3>
+				</div>
+				<div class="card-body">
+					{% if bookings %}
+					<ul class="list-group">
+						{% for booking in bookings %}
+						<li class="list-group-item">
+							<h5>{{ booking.studio.name }}</h5>
+							<p class="mb-1">
+								{{ booking.start_time|date:"M d, Y" }} from
+								{{ booking.start_time|date:"g:i A" }} to
+								{{ booking.end_time|date:"g:i A" }}
+							</p>
+							<span class="badge 
+                    {% if booking.status == 'confirmed' %}bg-success
+                    {% elif booking.status == 'pending' %}bg-warning
+                    {% else %}bg-danger{% endif %}">
+								{{ booking.status|title }}
+							</span>
+						</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<p class="text-muted">You have no upcoming bookings.</p>
+					{% endif %}
+
+					<a href="{% url 'booking_list' %}" class="btn btn-outline-primary mt-3 w-100">View All Bookings</a>
+				</div>
+			</div>
+
+			<div class="card mt-3">
+				<div class="card-header">
+					<h3>Account Actions</h3>
+				</div>
+				<div class="card-body">
+					<a href="{% url 'password_change' %}" class="btn btn-outline-secondary mb-2 w-100">Change Password</a>
+					{% if user.is_staff %}
+					<a href="{% url 'admin:index' %}" class="btn btn-outline-dark w-100">Admin Dashboard</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
