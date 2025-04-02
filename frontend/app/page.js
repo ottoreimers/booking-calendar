@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import CalendarComponent from "@/components/Calendar";
+import CalendarComponent from "@/components/Calendar/Calendar.js";
 
 export default function Home() {
   return (
