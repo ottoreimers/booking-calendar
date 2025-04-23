@@ -38,22 +38,22 @@ class BookingSerializer(serializers.ModelSerializer):
 class BookingGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ["name", "email", "date", "start_time", "end_time", "message"]
+        fields = ["id", "name", "email", "date", "start_time", "end_time", "message"]
 
 
 class BookingCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ["name", "email", "date", "start_time", "end_time", "message"]
+        fields = ["id", "name", "email", "date", "start_time", "end_time", "message"]
 
 
 class BookingUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ["name", "email", "date", "start_time", "end_time", "message"]
+        fields = ["id", "name", "email", "date", "start_time", "end_time", "message"]
 
 
 class BookingDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ["email"]
+        fields = ["id", "email"]
