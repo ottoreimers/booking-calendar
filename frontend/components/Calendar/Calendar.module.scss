@@ -1,12 +1,26 @@
 .Calendar {
-  height: 100vh;
   width: 100%;
   margin: 0 auto;
 
-  &__Container {}
-
-  .fc-scrollgrid {
-    width: auto;
+  &__Container {
+    --fc-border-color: #3f3f3f;
+    --fc-page-bg-color: #1a1a1a;
+    --fc-neutral-bg-color: #2c2c2c;
+    --fc-list-event-hover-bg-color: #2c2c2c;
+    --fc-event-bg-color: #1152d0;
+    --fc-event-border-color: #4a6baf;
+    --fc-event-text-color: #fff;
+    --fc-button-bg-color: #2c2c2c;
+    --fc-button-border-color: #3f3f3f;
+    --fc-button-text-color: #fff;
+    --fc-button-hover-bg-color: #3f3f3f;
+    --fc-button-hover-border-color: #555;
+    --fc-button-active-bg-color: #4f4f4f;
+    --fc-button-active-border-color: #666;
+    --fc-today-bg-color: rgba(255, 255, 255, 0.08);
+    --fc-highlight-color: rgba(255, 255, 255, 0.1);
+    --fc-neutral-text-color: #fff;
+    --fc-theme-standard-border-color: #3f3f3f;
   }
 
   &__ModalOverlay {
